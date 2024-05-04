@@ -11,13 +11,13 @@ Returns a new ActionGroup. `groupName` must be unique, two groups cannot have th
 
 ---
 ```Lua
-function ActionGroup.getGroup(groupName) -> ActionGroup?
+function ActionGroup.getGroup(groupName: string) -> ActionGroup?
 ```
 Returns the ActionGroup if it exists, nil otherwise.
 
 ---
 ```Lua
-function ActionGroup:SetActionHandler(actionHandler)
+function ActionGroup:SetActionHandler(actionHandler: (actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)->())
 ```
 Sets the action handler. Read more about handling actions [here](https://create.roblox.com/docs/reference/engine/classes/ContextActionService#BindAction). Setting a new handler while there are actions bound will rebind them to use the new one.
 
