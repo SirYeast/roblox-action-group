@@ -1,7 +1,7 @@
 --!strict
 local ContextAction = game:GetService("ContextActionService")
 
-type ActionHandler = (actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)->()
+type ActionHandler = (actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)->Enum.ContextActionResult
 
 type ActionGroupImpl = {
 	__index: ActionGroupImpl,
@@ -55,7 +55,7 @@ end
 function ActionGroup:SetActionHandler(actionHandler)
 	local previous = self._actionHandler
 	self._actionHandler = function(actionFullName, inputState, inputObject)
-		actionHandler(actionFullName:sub(self._name:len() + 1, actionFullName:len()), inputState, inputObject)
+		return actionHandler(actionFullName:sub(self._name:len() + 1, actionFullName:len()), inputState, inputObject)
 	end
 
 	if not previous then return end
